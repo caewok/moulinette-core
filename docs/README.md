@@ -22,7 +22,33 @@ In that folder, you need to make sure to have a 2-level structure
 
 * The first level will be identified as "publishers"
 * The second level will be used for "packs"
-* Moulinette will then scan all assets in that folder (including its subfolders)
+* Moulinette will then scan all assets in that folder (including its subfolders) (See scanning, below.)
+
+## How to use an S3 bucket to store your assets
+First, make sure you have set up an S3 bucket that is [accessible to Foundry](https://foundryvtt.com/article/aws-s3/). You can test this by clicking Tile Controls, then Tile Browser in the Foundry controls on the left side of the screen. In the browser near the top, click the Amazon S3 tab. You should see your S3 bucket name in S3 Bucket, and you should see the top level of your bucket displayed underneath. You should be able to click through the folders in your bucket, and drag out a tile image on to the canvas, just as you would with images stored to your local Foundry data.
+
+Next, in your Moulinette core settings, set the S3 bucket to the name of your bucket. This is not the URL, just the name! It is the same as the S3 bucket name you see in the Tile Browser under the Amazon S3 tab.
+
+Reload Foundry. Moulinette should have now created the following folder structure in your S3 bucket:
+- moulinette/images/custom
+- moulinette/scenes/custom
+- moulinette/sounds/custom
+- moulinette/tiles/custom
+
+You can now add folders to the respective custom folders. Follow the same structure as outlined above for adding assets to a custom folder. Namely, make sure you use a 2-level structure:
+```
+<level1 - publisher>
+  <level 2 - pack>
+    <level 3 - assets or subfolders>
+    ...
+```
+Moulinette will then scan all assets in that folder (including its subfolders) (See scanning, below.) 
+
+You can set up an alternative configuration for your S3 bucket by following the instructions for adding .mtte files in the below "Use advanced configuration" section.
+
+## Scanning
+
+To see your custom assets in Moulinette, you must open the Moulinette UI and click on the bottom button to index the respective asset type: "Index scenes," "Index sounds," or (for Tiles) "Index images." You must re-index whenever you make changes to the custom folder. 
 
 ## I already have assets in Foundry. Can I reuse them without having to move them into /moulinette/.../custom folders?
 
